@@ -1,6 +1,5 @@
 import React from "react";
 import classes from "./styles.module.scss";
-import Star from "../../assets/images/star.webp";
 
 const ButtonPrimary = ({
   button_text,
@@ -12,7 +11,6 @@ const ButtonPrimary = ({
   icon_two,
   onClick,
   number_text,
-  variant,
   ...props
 }) => {
   return (
@@ -26,7 +24,6 @@ const ButtonPrimary = ({
       {icon}
       {button_text}
       {icon_two}
-      {variant === "gradient_btn" && <img src={Star} alt="star" className={classes.star} />}
     </button>
   );
 };
