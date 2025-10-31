@@ -1,0 +1,16 @@
+services:
+  react-template: # Rename as per your repo
+    image: harbor.internal.codebuckets.in/react-template/stage # Rename as per your repo
+    container_name: react-template # Rename as per your repo
+    restart: unless-stopped
+    networks:
+      - ingress-network
+    #logging:
+     # driver: "fluentd"
+      #options:
+       # fluentd-address: "10.10.10.2:24224"
+        #tag: "docker.{{.Name}}"
+
+networks:
+  ingress-network:
+    external: true

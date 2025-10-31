@@ -1,10 +1,10 @@
-import React, { lazy, useEffect, useState, Suspense } from "react";
-const ButtonPage = lazy(() => import("../pages/buttonPages"));
+import { lazy, useEffect, useState, Suspense } from "react";
+
 import { Route, Routes } from "react-router-dom";
 
+const ButtonPage = lazy(() => import("../pages/buttonPages"));
 
 const homeRoutes = [
-    // Creator Page
     {
         path: "/",
         parent: "BUTTON",
@@ -12,14 +12,6 @@ const homeRoutes = [
         exact: true,
         component: ButtonPage,
     },
-    // {
-    //     path: "/*",
-    //     parent: "INFLUENCER",
-    //     permissions: "VIEW_BASIC_INFO",
-    //     exact: true,
-    //     navigate: "/button",
-    // },
-
 ];
 
 
