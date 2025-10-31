@@ -1,0 +1,9 @@
+@font-face {
+  font-family: "PoppinsRegular";
+  src: url("../fonts/poppins/Poppins-Regular.ttf") format("truetype");
+  font-weight: normal;
+  font-style: normal;
+}
+
+// define variable
+$poppins: "PoppinsRegular", sans-serif;
