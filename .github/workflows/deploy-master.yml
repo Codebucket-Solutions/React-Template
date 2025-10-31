@@ -1,0 +1,66 @@
+name: Build and Deploy to Staging
+
+on:
+  push:
+    branches:
+      - master
+
+  workflow_dispatch:
+
+env:
+  DOCKER_REPO: react-template # Rename as per your repo
+  DOCKER_IMAGE: stage
+  DOCKERFILE: Dockerfile
+  DOCKER_COMPOSE_FILE: docker-compose.yml
+
+jobs:
+  build:
+    runs-on: ${{ vars.DOCKER_BUILD_RUNNER }}
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+
+      - name: Login to Harbor
+        run: echo "${{ secrets.HARBOR_PASSWORD }}" | docker login https://harbor.internal.codebuckets.in -u '${{ secrets.HARBOR_USER }}' --password-stdin
+
+      - name: Build Docker Image
+        run: docker build -t harbor.internal.codebuckets.in/${{ env.DOCKER_REPO }}/${{ env.DOCKER_IMAGE }}:latest . -f docker/${{ env.DOCKERFILE }}
+
+      - name: Push Docker Image
+        run: docker push harbor.internal.codebuckets.in/${{ env.DOCKER_REPO }}/${{ env.DOCKER_IMAGE }}:latest
+
+      - name: Log out from Harbor
+        run: docker logout https://harbor.internal.codebuckets.in
+        if: always()
+
+  deploy:
+    runs-on: staging-server-1
+    needs: build
+
+    steps:
+      - name: Download Docker Compose file
+        run: |
+          curl -H "Authorization: token ${{ secrets.GITHUB_TOKEN }}" \
+               -L -o docker-compose.yml \
+               https://raw.githubusercontent.com/${{ github.repository }}/${{ github.ref_name }}/docker/${{ env.DOCKER_COMPOSE_FILE }}
+
+      - name: Log in to Harbor
+        run: echo "${{ secrets.HARBOR_PASSWORD }}" | docker login https://harbor.internal.codebuckets.in -u '${{ secrets.HARBOR_USER }}' --password-stdin
+
+      - name: Pull latest Image
+        run: docker compose -f docker-compose.yml pull
+
+      - name: Remove old containers
+        run: docker compose -f docker-compose.yml down || true
+
+      - name: Start new containers
+        run: docker compose -f docker-compose.yml up -d
+
+      - name: Clean up downloaded Docker Compose file and .env
+        if: always()
+        run: rm -f docker-compose.yml
+
+      - name: Log out from Harbor
+        run: docker logout https://harbor.internal.codebuckets.in
+        if: always()
