@@ -1,0 +1,29 @@
+name: SonarQube Scan Job
+
+on:
+  # Manually trigger anytime
+  workflow_dispatch:
+
+  # Automatically every 12 hours
+  schedule:
+    - cron: '0 */12 * * *'  # Every 12 hours
+
+jobs:
+
+  SonarQube-QualityGate:
+    name: SonarQube-QualityGate
+    runs-on: sonarqube-scanner
+    permissions:
+      contents: read
+
+    steps:
+      - name: Checkout Code
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0  # Needed for accurate branch & history analysis
+
+      - name: Run SonarQube Scan
+        uses: sonarsource/sonarqube-scan-action@master
+        env:
+          SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}
+          SONAR_HOST_URL: ${{ secrets.SONAR_HOST_URL }}
