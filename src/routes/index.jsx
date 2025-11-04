@@ -3,6 +3,7 @@ import { lazy, useEffect, useState, Suspense } from "react";
 import { Route, Routes } from "react-router-dom";
 
 const ButtonPage = lazy(() => import("../pages/buttonPages"));
+const TodoListPage = lazy(() => import("../pages/todoPages/todoList"));
 
 const homeRoutes = [
     {
@@ -12,6 +13,13 @@ const homeRoutes = [
         exact: true,
         component: ButtonPage,
     },
+    {
+        path: "/todos",
+        parent: "TODO",
+        permissions: "VIEW_TODO",
+        exact: true,
+        component: TodoListPage,
+    },
 ];
 
 
@@ -20,7 +28,7 @@ const homeRoutes = [
 
 const PagesRoute = () => {
     const [allRoutes, setAllRoutes] = useState([]);
-  
+
     useEffect(() => {
         setAllRoutes(homeRoutes)
     }, []);
