@@ -6,12 +6,17 @@
   "scripts": {
     "dev": "vite",
     "build": "vite build",
+    "start:stage": "env-cmd -f .buildParams.stage  npm run-script dev",
+    "build:stage": "env-cmd -f .buildParams.stage npm run-script build",
+    "start:master": "env-cmd -f .buildParams.master  npm run-script dev",
+    "build:master": "env-cmd -f .buildParams.master npm run-script build",
     "lint": "eslint .",
     "preview": "vite preview"
   },
   "dependencies": {
     "@reduxjs/toolkit": "^2.9.2",
     "axios": "^1.13.1",
+    "env-cmd": "^11.0.0",
     "react": "^19.1.1",
     "react-dom": "^19.1.1",
     "react-redux": "^9.2.0",
