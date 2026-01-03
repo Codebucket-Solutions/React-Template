@@ -1,0 +1,125 @@
+@use "../../assets/css/global";
+@use "../../assets/css/variables";
+
+.button_primary{
+    all: unset;
+    box-sizing: border-box;
+    cursor: pointer;
+    width: 100%;
+    height: auto;
+    border: 1px solid black;
+    border-radius: 8px;
+    padding: 8px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 5px;
+    font-family: $notoSans4;
+    font-size: 14px;
+    margin-bottom: 15px;
+    white-space: nowrap;
+}
+
+.search_button {
+    box-sizing: border-box;
+    cursor: pointer;
+    width: 94px;
+    height: 40px;
+    border-radius: 8px;
+    padding: 10px calc(1em/6);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+    font-family: $notoSans4;
+    font-size: 14px;
+    background-color: #ECD0FF;
+    color:$dark;
+    border: none;
+    white-space: nowrap;
+}
+
+.button_purple{
+    background-color: $primary;
+    border: 1px solid $primary;
+    color: white;
+    transition: all 0.15s ease;
+
+    &:hover {
+        background-color: $primary;
+        border-color: $primary;
+    }
+
+    &:active {
+        background-color: $primary;
+        border-color: $primary;
+        transform: scale(0.98);
+        box-shadow: inset 0 2px 4px rgba(0, 0, 0, 0.2);
+    }
+}
+
+.bordered_one{
+    color: #3D24A0;
+    background-color: #EBE7FD;
+    border: 1px solid #613AF5;
+}
+
+.bordered_two{
+    color: #6B0B10;
+    background-color: #FCE8E9;
+    border: 1px solid #B7131A;
+}
+
+.bordered_three{
+    color: $danger;
+    background-color: #ffffff;
+    border: 1px solid $danger;
+}
+
+.bordered_four{
+    background-color: #613AF5;
+    box-shadow: 0px 0px 0px 4px #613AF57A;
+    color: white;
+    border: unset;
+    padding: 6px 8px;
+}
+
+.button_success{
+     color: white;
+    background-color: $success-700;
+    border: none;
+}
+.button_danger{
+     color: white;
+    background-color: $danger;
+    border: none;
+}
+.button_danger_outline{
+     color: $danger;
+    background-color: white;
+    border: 1px solid $danger;
+}
+.primary_outline{
+     color: $primary;
+    background-color: white;
+    border: 1px solid $primary;
+}
+.primary{
+     color: white;
+    background-color: $primary;
+    border: none;
+}
+.warning_outline{
+     color: $warning;
+    background-color: white;
+    border: 1px solid $warning;
+}
+.warning{
+     color: white;
+    background-color: $warning;
+    border: none;
+}
+:disabled{
+    cursor: default;
+    opacity: 0.6;
+}
