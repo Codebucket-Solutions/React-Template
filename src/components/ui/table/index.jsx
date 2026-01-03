@@ -4,7 +4,7 @@ import classes from "./styles.module.scss";
 import Pagination from "@mui/material/Pagination";
 import Input from "../input";
 import Button from "../button";
-import { actionNotifier } from "../ui/toast";
+
 
 const Table = (props) => {
     const [allLabels, setAllLabels] = useState([]);
@@ -17,10 +17,10 @@ const Table = (props) => {
 
     const getColumn = () => {
         if (props.columns && props.columns.length > 0) {
-            
+
             let _allLabels = [];
             let _colWidths = [];
-            props.columns.map((p, index) => {
+            props.columns.map((p) => {
                 if (p.widthEnable) {
                     _colWidths.push(p.width);
                 } else {
@@ -46,8 +46,8 @@ const Table = (props) => {
     }, [props.initialSort]);
 
     const handleSelected = (event, value) => {
-       
-     
+
+
         if (props.fetchSelectedPage && typeof props.fetchSelectedPage === 'function') {
             props.fetchSelectedPage(value);
         }
@@ -76,8 +76,6 @@ const Table = (props) => {
     const onChangeCustomPage = () => {
         if (pageNo > 0 && pageNo <= getCount()) {
             props.onChangeCustomPage(pageNo);
-        } else {
-            actionNotifier.error("Please enter a valid page number");
         }
     };
 
@@ -113,7 +111,7 @@ const Table = (props) => {
                                             <td style={{ width: colWidths[idx] }} key={`${i}-${a}`}>{r[a]}</td>
                                         ))}
                                 </tr>
-                                
+
                                 {/* This is the new, valid progress bar row */}
                                 {r.__progressBar && (
                                     <tr key={`row-progress-${i}-${r.id || ''}`} className={classes.progress_row}>
@@ -197,7 +195,7 @@ Table.defaultProps = {
     countPages: 10,
     totalSize: 0,
     pageNumber: 1,
-    fetchSelectedPage: () => {},
+    fetchSelectedPage: () => { },
     wrapperClassName: "",
     onChangeCustomPage: null,
     maxPageCount: null,

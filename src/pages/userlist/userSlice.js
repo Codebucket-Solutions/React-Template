@@ -1,11 +1,10 @@
 import { createSlice } from "@reduxjs/toolkit";
+import { getUserList } from "./userThunk";
 const initialState = {
-    userList: {
         data: [],
         totalCount: 0,
         loading: false,
         error: null,
-    },
 };
 
 export const userSlice = createSlice({

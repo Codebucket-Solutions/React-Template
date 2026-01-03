@@ -1,10 +1,11 @@
 import { useRef, useEffect, useState } from "react";
-import { Visibility, VisibilityOff, InfoOutlineIcon} from "@mui/icons-material";
+import { Visibility, VisibilityOff } from "@mui/icons-material";
 import ReactSelect from "../reactSelect";
 import ReactPicky from "../reactPicky";
 import classes from "./styles.module.scss";
 import PropTypes from "prop-types";
 import AutoSuggest from "../autoSuggest";
+import InfoOutlineIcon from '@mui/icons-material/InfoOutline';
 const InputField = ({
     type = "text",
     title,
@@ -101,7 +102,7 @@ const InputField = ({
                 </option>
             ))}
         </select>
-        
+
     );
 
     const renderReactSelect = () => (

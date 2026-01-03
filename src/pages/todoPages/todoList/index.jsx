@@ -3,7 +3,7 @@ import { useGetSampleDataQuery } from '../todoApi'
 
 const TodoListPage = () => {
 
-    const { data, isLoading, isFetching, error } = useGetSampleDataQuery(); // Fetching sample data using the query hook
+    const { data, isLoading } = useGetSampleDataQuery(); // Fetching sample data using the query hook
     // isLoading: true when the request is in progress
     // isFetching: true when the request is in progress, but data may already be cached
 

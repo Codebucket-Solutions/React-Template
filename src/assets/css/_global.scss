@@ -1,9 +1,96 @@
+$notoSans1: NotoSans1;
+$notoSans2: NotoSans2;
+$notoSans3: NotoSans3;
+$notoSans4: NotoSans4;
+$notoSans5: NotoSans5;
+$notoSans6: NotoSans6;
+$notoSans7: NotoSans7;
+$notoSans8: NotoSans8;
+$notoSans9: NotoSans9;
+
+
 @font-face {
-  font-family: "PoppinsRegular";
-  src: url("../fonts/poppins/Poppins-Regular.ttf") format("truetype");
-  font-weight: normal;
-  font-style: normal;
+    font-family: NotoSans1;
+    src: url("../fonts/notoSans/NotoSans-Thin.ttf");
 }
 
-// define variable
-$poppins: "PoppinsRegular", sans-serif;
+@font-face {
+    font-family: NotoSans2;
+    src: url("../fonts/notoSans/NotoSans-ExtraLight.ttf");
+}
+
+@font-face {
+    font-family: NotoSans3;
+    src: url("../fonts/notoSans/NotoSans-Light.ttf");
+}
+
+@font-face {
+    font-family: NotoSans4;
+    src: url("../fonts/notoSans/NotoSans-Regular.ttf");
+}
+
+@font-face {
+    font-family: NotoSans5;
+    src: url("../fonts/notoSans/NotoSans-Medium.ttf");
+}
+
+@font-face {
+    font-family: NotoSans6;
+    src: url("../fonts/notoSans/NotoSans-SemiBold.ttf");
+}
+
+@font-face {
+    font-family: NotoSans7;
+    src: url("../fonts/notoSans/NotoSans-Bold.ttf");
+}
+
+@font-face {
+    font-family: NotoSans8;
+    src: url("../fonts/notoSans/NotoSans-ExtraBold.ttf");
+}
+
+@font-face {
+    font-family: NotoSans9;
+    src: url("../fonts/notoSans/NotoSans-Black.ttf");
+}
+
+$openSans3: OpenSans3;
+$openSans4: OpenSans4;
+$openSans5: OpenSans5;
+$openSans6: OpenSans6;
+$openSans7: OpenSans7;
+$openSans8: OpenSans8;
+
+
+@font-face {
+    font-family: OpenSans3;
+    src: url("../fonts/openSans/OpenSans-Light.ttf");
+}
+@font-face {
+    font-family: OpenSans4;
+    src: url("../fonts/openSans/OpenSans-Regular.ttf");
+}
+@font-face {
+    font-family: OpenSans5;
+    src: url("../fonts/openSans/OpenSans-Medium.ttf");
+}
+@font-face {
+    font-family: OpenSans6;
+    src: url("../fonts/openSans/OpenSans-SemiBold.ttf");
+}
+@font-face {
+    font-family: OpenSans7;
+    src: url("../fonts/openSans/OpenSans-Bold.ttf");
+}
+@font-face {
+    font-family: OpenSans8;
+    src: url("../fonts/openSans/OpenSans-ExtraBold.ttf");
+}
+
+$black: black;
+$white: white;
+
+$bgOne: #dddddd;
+$bgTwo: #F3F3F3;
+
+$textOne: #1C1C1C;

@@ -1,5 +1,5 @@
 import { createAsyncThunk } from "@reduxjs/toolkit";
-import { getUserListApi } from "./api";
+import { getUserListApi } from "./apis";
 import { actionNotifier } from "../../components/ui/toast";
 import { apiLoading, apiLoadingEnd } from "../../store/slices/notifications/notificationSlice";
 
