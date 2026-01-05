@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import  { useState } from 'react';
 import InputField from '../../components/ui/input';
 import Button from '../../components/ui/button';
 import styles from './styles.module.scss';
@@ -10,7 +10,6 @@ import {
     tagOptions,
     skillOptions,
     priorityOptions,
-    genderOptions,
     notificationOptions,
     cityOptions,
     productSearchOptions
@@ -30,6 +29,7 @@ const InputExamples = () => {
     const [selectValue, setSelectValue] = useState('');
     const [multiSelectValue, setMultiSelectValue] = useState([]);
     const [pickyValue, setPickyValue] = useState([]);
+    const [tagsPickyValue, setTagsPickyValue] = useState([]);
 
     // Radio/Checkbox state
     const [radioValue, setRadioValue] = useState('');
@@ -267,6 +267,8 @@ const InputExamples = () => {
                         type="select multiple picky"
                         name="tagsPicky"
                         title="Select Tags"
+                        value={tagsPickyValue}
+                        onChange={(selected) => setTagsPickyValue(selected)}
                         options={tagOptions}
                         optionValue="id"
                         optionLabel="name"
@@ -289,15 +291,6 @@ const InputExamples = () => {
                         value={radioValue}
                         onChange={(e) => setRadioValue(e.target.value)}
                         options={priorityOptions}
-                        optionValue="value"
-                        optionLabel="label"
-                    />
-
-                    <InputField
-                        type="radio"
-                        name="genderRadio"
-                        title="Select Gender"
-                        options={genderOptions}
                         optionValue="value"
                         optionLabel="label"
                     />
@@ -342,13 +335,6 @@ const InputExamples = () => {
                         label="I agree to the Terms and Conditions"
                     />
 
-                    <InputField
-                        type="single-checkbox"
-                        name="newsletterCheckbox"
-                        value={false}
-                        onChange={() => { }}
-                        label="Subscribe to newsletter"
-                    />
                 </div>
             </section>
 
@@ -509,14 +495,7 @@ const InputExamples = () => {
                             />
                         </div>
 
-                        <div className={styles.fullWidth}>
-                            <InputField
-                                type="single-checkbox"
-                                name="formTerms"
-                                label="I agree to the Terms of Service and Privacy Policy"
-                                required
-                            />
-                        </div>
+                       
                     </div>
 
                     <div className={styles.buttonGroup} style={{ marginTop: '1.5rem' }}>

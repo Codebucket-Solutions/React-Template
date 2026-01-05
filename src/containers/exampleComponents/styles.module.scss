@@ -331,3 +331,116 @@
         flex: 1;
     }
 }
+
+/* ===============================
+   🔹 Color Variables Component
+=============================== */
+.colorGroup {
+    margin-bottom: 2rem;
+}
+
+.colorGrid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(140px, 1fr));
+    gap: 1rem;
+}
+
+.colorCard {
+    cursor: pointer;
+    border-radius: 12px;
+    overflow: hidden;
+    background: #fff;
+    border: 1px solid #e5e7eb;
+    transition: all 0.2s ease;
+
+    &:hover {
+        transform: translateY(-4px);
+        box-shadow: 0 8px 24px rgba(0, 0, 0, 0.12);
+
+        .copyIcon {
+            opacity: 1;
+        }
+    }
+
+    &:active {
+        transform: translateY(-2px);
+    }
+}
+
+.colorSwatch {
+    height: 80px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: relative;
+}
+
+.copyIcon {
+    opacity: 0;
+    transition: opacity 0.2s ease;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 32px;
+    height: 32px;
+    background: rgba(255, 255, 255, 0.2);
+    backdrop-filter: blur(4px);
+    border-radius: 8px;
+}
+
+.colorInfo {
+    padding: 10px 12px;
+    display: flex;
+    flex-direction: column;
+    gap: 2px;
+    background: #fafafa;
+}
+
+.colorVar {
+    font-size: 12px;
+    font-weight: 600;
+    color: $dark;
+    font-family: 'Fira Code', 'Consolas', monospace;
+}
+
+.colorHex {
+    font-size: 11px;
+    color: $hint;
+    font-family: 'Fira Code', 'Consolas', monospace;
+    text-transform: uppercase;
+}
+
+.toast {
+    position: fixed;
+    bottom: 24px;
+    left: 50%;
+    transform: translateX(-50%);
+    background: linear-gradient(135deg, $success-600 0%, $success-700 100%);
+    color: #fff;
+    padding: 12px 24px;
+    border-radius: 12px;
+    box-shadow: 0 8px 32px rgba($success-700, 0.4);
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    font-size: 14px;
+    font-weight: 500;
+    z-index: 1000;
+    animation: slideUp 0.3s ease;
+
+    strong {
+        font-family: 'Fira Code', 'Consolas', monospace;
+    }
+}
+
+@keyframes slideUp {
+    from {
+        opacity: 0;
+        transform: translateX(-50%) translateY(20px);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateX(-50%) translateY(0);
+    }
+}

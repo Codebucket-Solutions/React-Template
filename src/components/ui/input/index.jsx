@@ -61,7 +61,7 @@ const InputField = ({
     const renderTextarea = () => (
         <>
             <textarea
-                className={`${classes.formInput} ${className}`}
+                className={`${classes.formInput} ${classes.textareaDiv} ${className}`}
                 placeholder={placeholder}
                 value={value ?? undefined}
                 defaultValue={value == null ? defaultValue : undefined}
@@ -71,6 +71,7 @@ const InputField = ({
                 rows={props.rows || 4}
                 style={{ height: "auto", ...props.style }}
                 onChange={handleChange}
+                res
                 {...forms}
             />
             {!props.hideCharCount && (
@@ -312,7 +313,7 @@ const InputField = ({
             {renderByType()}
             {hint && (
                 <p className={classes.hint}>
-                    <InfoOutlineIcon/>
+                    <InfoOutlineIcon />
                     {hint}
                 </p>
             )}

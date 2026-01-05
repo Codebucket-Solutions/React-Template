@@ -111,39 +111,30 @@ const Table = (props) => {
                                             <td style={{ width: colWidths[idx] }} key={`${i}-${a}`}>{r[a]}</td>
                                         ))}
                                 </tr>
-
-                                {/* This is the new, valid progress bar row */}
-                                {r.__progressBar && (
-                                    <tr key={`row-progress-${i}-${r.id || ''}`} className={classes.progress_row}>
-                                        <td colSpan={Math.max(1, allLabels.length)}>
-                                            {r.__progressBar}
-                                        </td>
-                                    </tr>
-                                )}
                             </React.Fragment>
                         ))}
                 </tbody>
             </table>
             {props.pagination ? (
-                <div className={classes["table-pagination"]}>
+                <div className={classes.table_pagination}>
                     {props.onChangeCustomPage && (
-                        <>
+                        <div className={classes.pagination_input_group}>
+                            <div>
                             <Input
                                 type="number"
-                                style={{ width: 60, height: 35 }}
                                 onChange={(e) => setPageNo(e.target.value)}
                                 value={pageNo}
                             />
-                            &nbsp;
+                            </div>
+                            <div>
                             <Button
                                 type="button"
-                                style={{ height: 35 }}
                                 variant="button_black"
                                 button_text="Go"
                                 onClick={onChangeCustomPage}
                             />
-                            &nbsp;
-                        </>
+                            </div>
+                        </div>
                     )}
                     <Pagination
                         variant="outlined"
