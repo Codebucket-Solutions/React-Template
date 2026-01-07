@@ -18,9 +18,10 @@ const MySelect = React.forwardRef((props, ref) => {
             ...base,
             color: "black",
             fontWeight: "600",
-            fontSize: "14px"
+            fontSize: "14px",
+            textAlign: "left"
         }),
-        multiValue : (base) => ({
+        multiValue: (base) => ({
             ...base,
             color: "black",
             fontWeight: "600",
@@ -55,6 +56,7 @@ const MySelect = React.forwardRef((props, ref) => {
                 backgroundColor: bgColor,
                 color: isSelected ? "#fff" : "#ccc",
                 cursor: "pointer",
+                textAlign: "left",
                 "&:hover": { backgroundColor: "#444", color: "#fff" },
             }
         },

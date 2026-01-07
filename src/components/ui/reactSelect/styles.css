@@ -7,4 +7,5 @@
 }
 .react-select__option {
   color: #fff !important;
+  text-align: left !important;
 }
