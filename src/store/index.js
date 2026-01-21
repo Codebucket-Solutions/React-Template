@@ -15,9 +15,8 @@ const loadAuthFromLocalStorage = () => {
   }
 };
 
-// Preloaded state with Auth
 const preloadedState = {
-  Auth: {
+  User: {
     auth: loadAuthFromLocalStorage(),
   },
 };
@@ -30,4 +29,3 @@ export const store = configureStore({
 
   devTools: import.meta.env.VITE_NODE_ENV !== "production",
 });
-

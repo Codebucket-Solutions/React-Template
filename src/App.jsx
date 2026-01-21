@@ -9,16 +9,16 @@ function App() {
 
     return (
         <>
-        <Toaster
-        position="top-center"
-        reverseOrder={false}
-      />
-      {notification.loading ? (
-        <Loader
-          active={notification.loading}
-          loadingMessage={notification.loadingMessage}
-        />
-      ) : null}
+            <Toaster
+                position="top-center"
+                reverseOrder={false}
+            />
+            {notification.loading ? (
+                <Loader
+                    active={notification.loading}
+                    loadingMessage={notification.loadingMessage}
+                />
+            ) : null}
             <PagesRoute />
         </>
     )

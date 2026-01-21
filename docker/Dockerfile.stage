@@ -14,7 +14,7 @@ COPY package*.json ./
 RUN npm set registry https://npm.internal.codebuckets.in
 
 # Install dependencies
-RUN npm install
+RUN npm ci
 
 # Copy the source code
 COPY . .
@@ -38,4 +38,4 @@ COPY --from=builder /app/dist /usr/share/nginx/html
 EXPOSE 80
 
 # Start nginx
-CMD ["nginx", "-g", "daemon off;"]
+CMD ["nginx", "-g", "daemon off;"]  
