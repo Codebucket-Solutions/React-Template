@@ -1,0 +1,446 @@
+@use "../../assets/css/variables" as *;
+
+.exampleContainer {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 2rem;
+}
+
+.exampleSection {
+    background: #ffffff;
+    border-radius: 12px;
+    padding: 2rem;
+    margin-bottom: 2rem;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
+}
+
+.sectionTitle {
+    font-size: 1.5rem;
+    font-weight: 600;
+    color: #1a1a2e;
+    margin-bottom: 1.5rem;
+    padding-bottom: 0.75rem;
+    border-bottom: 2px solid $primary;
+    display: inline-block;
+}
+
+.sectionSubtitle {
+    font-size: 1.125rem;
+    font-weight: 500;
+    color: #374151;
+    margin: 1.5rem 0 1rem 0;
+}
+
+.componentRow {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 1rem;
+    margin-bottom: 1.5rem;
+    align-items: center;
+}
+
+.componentColumn {
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+}
+
+.buttonGroup {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 1rem;
+    align-items: center;
+
+    button {
+        width: auto;
+        min-width: 120px;
+        margin-bottom: 0;
+    }
+}
+
+.inputGroup {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 1.5rem;
+    width: 100%;
+}
+
+.inputItem {
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+}
+
+.tableSection {
+    overflow-x: auto;
+}
+
+.description {
+    font-size: 0.875rem;
+    color: #6b7280;
+    margin-bottom: 1rem;
+    padding: 0.75rem;
+    background: #f8fafc;
+    border-radius: 8px;
+    border-left: 3px solid $primary;
+}
+
+.codeBlock {
+    background: #1e1e2e;
+    color: #cdd6f4;
+    padding: 1rem;
+    border-radius: 8px;
+    font-family: 'Fira Code', 'Consolas', monospace;
+    font-size: 0.875rem;
+    overflow-x: auto;
+    margin: 1rem 0;
+
+    code {
+        color: #89dceb;
+    }
+}
+
+.divider {
+    height: 1px;
+    background: linear-gradient(to right, transparent, #e5e7eb, transparent);
+    margin: 2rem 0;
+}
+
+.badge {
+    display: inline-flex;
+    align-items: center;
+    padding: 0.25rem 0.75rem;
+    font-size: 0.75rem;
+    font-weight: 500;
+    border-radius: 9999px;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+
+    &.badgePrimary {
+        background: rgba($primary, 0.1);
+        color: $primary;
+    }
+
+    &.badgeSuccess {
+        background: rgba(#10b981, 0.1);
+        color: #10b981;
+    }
+
+    &.badgeDanger {
+        background: rgba($danger, 0.1);
+        color: $danger;
+    }
+
+    &.badgeWarning {
+        background: rgba($warning, 0.1);
+        color: $warning;
+    }
+}
+
+.iconWrapper {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 24px;
+    height: 24px;
+}
+
+.gridTwo {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 1.5rem;
+
+    @media (max-width: 768px) {
+        grid-template-columns: 1fr;
+    }
+}
+
+.gridThree {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 1.5rem;
+
+    @media (max-width: 1024px) {
+        grid-template-columns: repeat(2, 1fr);
+    }
+
+    @media (max-width: 640px) {
+        grid-template-columns: 1fr;
+    }
+}
+
+.card {
+    background: #ffffff;
+    border: 1px solid #e5e7eb;
+    border-radius: 12px;
+    padding: 1.5rem;
+    transition: all 0.2s ease;
+
+    &:hover {
+        box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+        transform: translateY(-2px);
+    }
+}
+
+.cardTitle {
+    font-size: 1rem;
+    font-weight: 600;
+    color: #1f2937;
+    margin-bottom: 0.5rem;
+}
+
+.cardDescription {
+    font-size: 0.875rem;
+    color: #6b7280;
+}
+
+.statusDot {
+    display: inline-block;
+    width: 8px;
+    height: 8px;
+    border-radius: 50%;
+    margin-right: 8px;
+
+    &.active {
+        background-color: #10b981;
+    }
+
+    &.inactive {
+        background-color: #ef4444;
+    }
+
+    &.pending {
+        background-color: #f59e0b;
+    }
+}
+
+.actionButtons {
+    display: flex;
+    gap: 0.5rem;
+
+    button {
+        width: auto;
+        min-width: auto;
+        padding: 6px 12px;
+        margin-bottom: 0;
+        font-size: 12px;
+    }
+}
+
+.searchRow {
+    display: flex;
+    gap: 1rem;
+    margin-bottom: 1.5rem;
+    align-items: flex-end;
+    flex-wrap: wrap;
+
+    >div {
+        flex: 1;
+        min-width: 200px;
+    }
+
+    button {
+        width: auto;
+        min-width: 100px;
+        margin-bottom: 0;
+    }
+}
+
+.modalContent {
+    padding: 1rem 0;
+}
+
+.modalActions {
+    display: flex;
+    justify-content: flex-end;
+    gap: 1rem;
+    margin-top: 1rem;
+
+    button {
+        width: auto;
+        min-width: 100px;
+        margin-bottom: 0;
+    }
+}
+
+.formGrid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 1rem;
+
+    @media (max-width: 640px) {
+        grid-template-columns: 1fr;
+    }
+}
+
+.fullWidth {
+    grid-column: 1 / -1;
+}
+
+.previewBox {
+    background: #f1f5f9;
+    border: 2px dashed #cbd5e1;
+    border-radius: 8px;
+    padding: 2rem;
+    text-align: center;
+    color: #64748b;
+}
+
+.highlight {
+    background: linear-gradient(120deg, rgba($primary, 0.1) 0%, rgba($primary, 0.05) 100%);
+    padding: 1.5rem;
+    border-radius: 12px;
+    margin: 1rem 0;
+}
+
+.tabsContainer {
+    display: flex;
+    gap: 0.5rem;
+    margin-bottom: 1.5rem;
+    border-bottom: 2px solid #e5e7eb;
+    padding-bottom: 0.5rem;
+}
+
+.tab {
+    padding: 0.5rem 1rem;
+    background: transparent;
+    border: none;
+    cursor: pointer;
+    font-weight: 500;
+    color: #6b7280;
+    border-radius: 8px 8px 0 0;
+    transition: all 0.2s ease;
+
+    &:hover {
+        background: #f3f4f6;
+        color: #374151;
+    }
+
+    &.activeTab {
+        background: $primary;
+        color: white;
+    }
+}
+
+.rangeContainer {
+    display: flex;
+    gap: 1rem;
+    align-items: center;
+
+    >div {
+        flex: 1;
+    }
+}
+
+/* ===============================
+   🔹 Color Variables Component
+=============================== */
+.colorGroup {
+    margin-bottom: 2rem;
+}
+
+.colorGrid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(140px, 1fr));
+    gap: 1rem;
+}
+
+.colorCard {
+    cursor: pointer;
+    border-radius: 12px;
+    overflow: hidden;
+    background: #fff;
+    border: 1px solid #e5e7eb;
+    transition: all 0.2s ease;
+
+    &:hover {
+        transform: translateY(-4px);
+        box-shadow: 0 8px 24px rgba(0, 0, 0, 0.12);
+
+        .copyIcon {
+            opacity: 1;
+        }
+    }
+
+    &:active {
+        transform: translateY(-2px);
+    }
+}
+
+.colorSwatch {
+    height: 80px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: relative;
+}
+
+.copyIcon {
+    opacity: 0;
+    transition: opacity 0.2s ease;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 32px;
+    height: 32px;
+    background: rgba(255, 255, 255, 0.2);
+    backdrop-filter: blur(4px);
+    border-radius: 8px;
+}
+
+.colorInfo {
+    padding: 10px 12px;
+    display: flex;
+    flex-direction: column;
+    gap: 2px;
+    background: #fafafa;
+}
+
+.colorVar {
+    font-size: 12px;
+    font-weight: 600;
+    color: $dark;
+    font-family: 'Fira Code', 'Consolas', monospace;
+}
+
+.colorHex {
+    font-size: 11px;
+    color: $hint;
+    font-family: 'Fira Code', 'Consolas', monospace;
+    text-transform: uppercase;
+}
+
+.toast {
+    position: fixed;
+    bottom: 24px;
+    left: 50%;
+    transform: translateX(-50%);
+    background: linear-gradient(135deg, $success-600 0%, $success-700 100%);
+    color: #fff;
+    padding: 12px 24px;
+    border-radius: 12px;
+    box-shadow: 0 8px 32px rgba($success-700, 0.4);
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    font-size: 14px;
+    font-weight: 500;
+    z-index: 1000;
+    animation: slideUp 0.3s ease;
+
+    strong {
+        font-family: 'Fira Code', 'Consolas', monospace;
+    }
+}
+
+@keyframes slideUp {
+    from {
+        opacity: 0;
+        transform: translateX(-50%) translateY(20px);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateX(-50%) translateY(0);
+    }
+}

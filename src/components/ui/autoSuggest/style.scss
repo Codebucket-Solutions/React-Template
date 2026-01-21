@@ -1,0 +1,60 @@
+@use "../../../assets/css/global";
+@use "../../../assets/css/variables";
+
+
+.auto-suggest-container {
+  position: relative;
+  width: 100%;
+}
+.auto-suggest-loader {
+  position: absolute;
+  right: 10px;
+  top: 50%;
+  transform: translateY(-50%);
+  width: 20px; /* size of the spinner */
+  height: 20px;
+  border: 3px solid #f3f3f3; /* light gray background */
+  border-top: 3px solid #555; /* spinner color */
+  border-radius: 50%;
+  animation: spin 1s linear infinite;
+}
+
+@keyframes spin {
+  0% {
+    transform: translateY(-50%) rotate(0deg);
+  }
+  100% {
+    transform: translateY(-50%) rotate(360deg);
+  }
+}
+.auto-suggest-input {
+  width: 100%;
+  padding: 8px 10px;
+  border: 1px solid #ccc;
+  border-radius: 6px;
+  outline: none;
+  font-size: 14px;
+}
+
+.auto-suggest-dropdown {
+  position: absolute;
+  background: #fff;
+  width: 100%;
+  flex-direction: column;
+  border-radius: 6px;
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1);
+  z-index: 10;
+  max-height: 200px;
+  overflow-y: auto;
+  margin-top: 40px;
+}
+
+.auto-suggest-option {
+  padding: 8px 10px;
+  cursor: pointer;
+  transition: background 0.2s ease;
+}
+
+.auto-suggest-option:hover {
+  background: #f2f2f2;
+}

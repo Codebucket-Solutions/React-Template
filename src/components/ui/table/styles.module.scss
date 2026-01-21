@@ -1,0 +1,105 @@
+@use "../../../assets/css/global";
+@use "../../../assets/css/variables" as *;
+
+.table_container {
+    width: 100%;
+    border-collapse: separate;
+    border-spacing: 0 1px;
+    background-color: transparent;
+    border-radius: 10px;
+}
+
+/* ---------------- HEADER ---------------- */
+.table_container thead tr {
+    background: $primary-700;
+}
+
+.table_container thead th {
+    padding: 14px 18px;
+    text-align: left;
+    font-size: 14px;
+    font-weight: 600;
+    color: #FFF;
+    font-family: 'Poppins', NotoSans6, sans-serif;
+    border: none;
+    background: $primary-700;
+
+    &:first-child {
+        border-top-left-radius: 8px;
+    }
+
+    &:last-child {
+        border-top-right-radius: 8px;
+    }
+}
+
+/* ---------------- ROWS ---------------- */
+.table_container tbody tr {
+    background: #FFFFFF;
+    box-shadow: 0 1px 4px rgba($dark, 0.08);
+    border-radius: 8px;
+    transition: all 0.2s ease;
+}
+
+.table_container tbody tr:hover {
+    box-shadow: 0 3px 10px rgba($dark, 0.12);
+    transform: translateY(-1px);
+}
+
+/* ---------------- CELLS ---------------- */
+.table_container tbody td {
+    padding: 16px 18px;
+    font-size: 13px;
+    color: $dark;
+    font-family: 'Poppins', NotoSans4, sans-serif;
+    vertical-align: middle;
+    background: inherit;
+
+    &:first-child {
+        border-top-left-radius: 8px;
+        border-bottom-left-radius: 8px;
+    }
+
+    &:last-child {
+        border-top-right-radius: 8px;
+        border-bottom-right-radius: 8px;
+    }
+}
+
+/* ---------------- PROGRESS ROW ---------------- */
+tr.progress_row {
+    background: none !important;
+    box-shadow: none !important;
+    height: 1px;
+}
+
+tr.progress_row td {
+    padding: 2px 6px 0 6px;
+    border: none !important;
+    background: transparent !important
+}
+
+.table_pagination {
+    margin-top: 16px;
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
+    gap: 12px;
+
+    .pagination_input_group {
+        display: flex;
+        align-items: center;
+        gap: 8px;
+        padding-top: 20px;
+
+        input {
+            width: 60px;
+            height: 36px;
+            margin-bottom: 5px;
+        }
+
+        button {
+            height: 36px;
+        }
+    }
+}
