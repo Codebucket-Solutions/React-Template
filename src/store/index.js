@@ -5,11 +5,8 @@ import { baseApi } from '../apiCall/rtkBaseApi/baseApi';
 // Load auth state from localStorage
 const loadAuthFromLocalStorage = () => {
   try {
-    const admin = localStorage.getItem("admin-login");
-    const influencer = localStorage.getItem("influencer-login");
-    if (admin) return JSON.parse(admin);
-    if (influencer) return JSON.parse(influencer);
-    return null;
+    const data = localStorage.getItem("vibeGuard-auth");
+    return data ? JSON.parse(data) : null;
   } catch {
     return null;
   }
@@ -18,6 +15,7 @@ const loadAuthFromLocalStorage = () => {
 const preloadedState = {
   User: {
     auth: loadAuthFromLocalStorage(),
+    isAuthLoading: false,
   },
 };
 
