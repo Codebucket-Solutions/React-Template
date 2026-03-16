@@ -3,6 +3,8 @@ services:
     image: harbor.internal.codebuckets.in/react-template/stage # Rename as per your repo
     container_name: react-template # Rename as per your repo
     restart: unless-stopped
+    env_file:
+      - /home/ENV/react-template/.env  # Change the exact env path as per your repo
     networks:
       - ingress-network
     #logging:

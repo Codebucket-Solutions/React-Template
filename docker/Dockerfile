@@ -20,7 +20,7 @@ RUN npm install
 COPY . .
 
 # Build the application
-RUN npm run build:master
+RUN npm run build
 
 # Stage 2: Serve using Nginx
 FROM nginx:latest
@@ -33,6 +33,10 @@ RUN rm -rf /usr/share/nginx/html/*
 
 # Copy built files from builder
 COPY --from=builder /app/dist /usr/share/nginx/html
+
+# Generate runtime import-meta-env file during container startup
+COPY docker/runtime-env.sh /docker-entrypoint.d/40-runtime-env.sh
+RUN chmod +x /docker-entrypoint.d/40-runtime-env.sh
 
 # Expose port 80
 EXPOSE 80

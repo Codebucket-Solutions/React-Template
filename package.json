@@ -6,10 +6,6 @@
   "scripts": {
     "dev": "vite",
     "build": "vite build",
-    "start:stage": "env-cmd -f .buildParams.stage  npm run-script dev",
-    "build:stage": "env-cmd -f .buildParams.stage npm run-script build",
-    "start:master": "env-cmd -f .buildParams.master  npm run-script dev",
-    "build:master": "env-cmd -f .buildParams.master npm run-script build",
     "lint": "eslint .",
     "preview": "vite preview"
   },
@@ -20,7 +16,6 @@
     "@mui/material": "^7.3.7",
     "@reduxjs/toolkit": "^2.11.2",
     "axios": "^1.13.1",
-    "env-cmd": "^11.0.0",
     "react": "^19.2.3",
     "react-dom": "^19.2.3",
     "react-hot-toast": "^2.6.0",
@@ -33,6 +28,7 @@
   },
   "devDependencies": {
     "@eslint/js": "^9.36.0",
+    "@import-meta-env/unplugin": "^0.6.1",
     "@types/react": "^19.1.16",
     "@types/react-dom": "^19.1.9",
     "@vitejs/plugin-react": "^5.0.4",
