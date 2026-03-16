@@ -1,0 +1,66 @@
+@use "../../assets/css/variables" as *;
+
+.page {
+  display: grid;
+  gap: 24px;
+}
+
+.hero {
+  display: grid;
+  grid-template-columns: minmax(0, 1.5fr) minmax(260px, 0.9fr);
+  gap: 20px;
+  padding: 24px;
+  border: 1px solid rgba($primary-200, 0.7);
+  border-radius: 24px;
+  background: linear-gradient(180deg, rgba(255, 255, 255, 0.94), rgba($primary-50, 0.88));
+  box-shadow: 0 18px 38px rgba($dark, 0.05);
+
+  h1 {
+    margin: 0 0 12px;
+    font-size: clamp(1.8rem, 3vw, 2.8rem);
+    line-height: 1.05;
+    color: $dark;
+  }
+
+  p {
+    margin: 0;
+    color: $gray-700;
+    line-height: 1.65;
+  }
+}
+
+.eyebrow {
+  margin: 0 0 10px !important;
+  font-size: 12px;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  color: $primary-700;
+}
+
+.highlightCard {
+  padding: 20px;
+  border-radius: 20px;
+  background: rgba(255, 255, 255, 0.92);
+  border: 1px solid rgba($gray-300, 0.85);
+
+  h2 {
+    margin: 0 0 12px;
+    font-size: 1rem;
+    color: $dark;
+  }
+
+  ul {
+    margin: 0;
+    padding-left: 18px;
+    display: grid;
+    gap: 10px;
+    color: $gray-700;
+  }
+}
+
+@media (max-width: 900px) {
+  .hero {
+    grid-template-columns: 1fr;
+  }
+}

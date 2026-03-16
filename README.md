@@ -1,138 +1,90 @@
-Here’s an updated version of your **README** that includes your new Todo List feature and RTK Query integration 👇
+# React Template
 
----
+Frontend starter for product teams who want a clean React + Vite baseline with:
+- explicit page/container/layout structure
+- Redux Toolkit wiring with both thunk and RTK Query reference flows
+- mock-first demo flows that boot without a backend
+- deterministic worktree setup for Codex and human developers
+- a local logs/metrics/traces stack for runtime validation
+- repo-local docs, execution plans, and validation scripts
 
-# 🚀 React Boilerplate
-
-A scalable and well-structured React project setup with **Redux Toolkit**, **RTK Query**, **Axios**, and **modular SCSS** — ready for rapid development.
-
----
-
-## 📁 Project Structure
-
-```
-src/
-├── apiCalls/
-│   └── functions/                # API function definitions (with example at homepage)
-├── components/                   # Reusable UI components
-├── containers/                   # Smart components handling logic and state
-├── pages/
-│   ├── buttonPages/              # Example pages for button components
-│   └── todoPages/
-│       ├── todoList/             # Todo List page using RTK Query example
-│       │   └── index.jsx
-│       └── todoApi.js            # RTK Query API definitions
-├── routes/                       # Centralized routing setup
-├── shared/
-│   └── axios.js                  # Axios base configuration
-└── store/                        # Redux setup (with RTK Query middleware and DevTools)
-```
-
-Each folder includes its own `.scss` file for modular styling.
-
----
-
-## ⚙️ Features
-
-✅ **RTK Query Integration** – Centralized API handling with caching and async management.
-✅ **Todo List Example** – Demonstrates RTK Query API usage, data fetching, and mutation.
-✅ **Component Architecture** – Structured separation between components, containers, and pages.
-✅ **Routing System** – Pre-configured using React Router inside `/routes`.
-✅ **Axios Setup** – Centralized API configuration under `shared/axios.js`.
-✅ **Redux Toolkit Integration** – Store setup with RTK Query middleware and DevTools enabled.
-✅ **SCSS Support** – Component-level modular SCSS for cleaner styling.
-
----
-
-## 🧑‍💻 Developer Setup
-
-### 1️⃣ Clone the Repository
-
-```bash
-git clone <repo-url>
-cd <repo-folder>
-```
-
-### 2️⃣ Rename Project
-
-Search for `"react-template"` and replace it with your project/repo name.
-
-### 3️⃣ Environment Setup
-
-Create a `.env` file and copy the contents from `.buildParams.stage`.
-
-### 4️⃣ Install Dependencies
+## Quick start
 
 ```bash
 npm install
+npm run worktree:bootstrap
+npm run observability:up
+npm run dev:worktree
 ```
 
-### 5️⃣ Run the Project
+The worktree bootstrap writes `.codex/worktree.env`, derives stable app and observability ports from the worktree path, generates docs, and runs the repo validation checks.
 
-```bash
-npm run dev
+## Scripts
+
+| Command | Purpose |
+| --- | --- |
+| `npm run dev` | Start the default Vite dev server |
+| `npm run dev:worktree` | Start Vite on the deterministic worktree port |
+| `npm run build` | Build the production bundle |
+| `npm run arch:check` | Enforce repo architecture boundaries |
+| `npm run docs:generate` | Regenerate derived docs such as the route map |
+| `npm run docs:validate` | Validate docs structure and freshness |
+| `npm run quality:score` | Print the current harness score |
+| `npm run clean:artifacts` | Remove disposable browser and build artifacts from the workspace |
+| `npm run observability:up` | Start the local Grafana/Prometheus/Loki/Tempo stack |
+| `npm run observability:status` | Show the current local observability services |
+| `npm run observability:query -- <kind> "<query>"` | Query metrics, logs, or traces from the local stack |
+| `npm run ui:smoke` | Drive the registered routes in a real browser via Playwright CLI |
+| `npm run verify` | Run lint, build, docs validation, architecture checks, and quality scoring |
+
+## Structure
+
+```text
+src/
+├── apiCall/                 # Shared API helpers and RTK base query
+├── components/              # Reusable presentational components
+├── containers/              # Feature implementations and shared layout shells
+├── pages/                   # Thin route wrappers that render containers
+├── routes/                  # Route registry and router wiring
+├── shared/                  # Cross-cutting utilities, mock data, observability
+└── store/                   # Redux store, slices, and RTK Query endpoints
 ```
 
----
+The current route registry lives in `src/routes/routeCatalog.js`. Regenerate `docs/generated/route-map.md` after any route change.
 
-## 🧩 Folder Highlights
+The template currently ships with:
+- `/login` as the thunk-backed auth example
+- `/todos` as the RTK Query example
+- `/observability` as the runtime inspection surface
 
-| Folder               | Purpose                                                          |
-| :------------------- | :--------------------------------------------------------------- |
-| `components/`        | Contains small reusable UI blocks (e.g., Buttons, Modals)        |
-| `containers/`        | Handles data logic, connects with Redux or API calls             |
-| `pages/todoPages/`   | Includes Todo List example with RTK Query integration            |
-| `routes/`            | Defines and manages all routes                                   |
-| `shared/axios.js`    | Base Axios instance setup for API calls                          |
-| `apiCalls/functions` | Individual API function modules                                  |
-| `store/`             | Redux store configuration with RTK Query middleware and DevTools |
+## Harness layer
 
----
+This template bakes in the core repo mechanics needed for an agent-friendly frontend project:
+- `AGENTS.md` as a short table of contents
+- structured docs under `docs/`
+- execution plans under `docs/exec-plans/`
+- deterministic worktree metadata in `.codex/worktree.env`
+- architecture, docs, and quality scripts under `scripts/`
+- local runtime signals exposed at `/observability`
+- local Grafana, Prometheus, Loki, and Tempo services for logs/metrics/traces
+- browser smoke validation via `scripts/ui-smoke.sh` and `playwright-cli.json`
+- a smoke runner that prefers the Codex Playwright wrapper and otherwise uses the repo-pinned CLI
 
-## 🧠 Example References
+## Docs
 
-* **RTK Query Example:** `pages/todoPages/todoList/index.jsx`
-* **API Setup:** `pages/todoPages/todoApi.js`
-* **Redux Integration:** RTK Query middleware configured in `store/`
-* **Routing Example:** Defined in `routes/index.jsx`
+Start with:
+- `AGENTS.md`
+- `docs/README.md`
+- `docs/WORKFLOW.md`
+- `docs/ARCHITECTURE.md`
+- `docs/FRONTEND.md`
+- `docs/OBSERVABILITY.md`
+- `docs/MULTI_AGENT.md`
 
----
+## Notes
 
-## 📜 Scripts
-
-| Command           | Description                      |
-| :---------------- | :------------------------------- |
-| `npm run dev`     | Start development server         |
-| `npm run build`   | Create production build          |
-| `npm run preview` | Preview production build locally |
-
----
-
-## 🛠️ Tech Stack
-
-* **React 19+**
-* **Redux Toolkit + RTK Query**
-* **React Router**
-* **Axios**
-* **SCSS Modules**
-* **Vite**
-
----
-## 🤖 Codex / Harness Layer
-
-This template now includes an additive harness layer for Codex app usage:
-
-- `AGENTS.md` at repo root
-- `.codex/config.toml`
-- structured repo docs under `docs/`
-- execution plan folders under `docs/exec-plans/`
-- repo validation and quality scripts under `scripts/`
-- CI checks for lint, build, and doc hygiene
-
-### Additional scripts
-
-- `npm run docs:validate`
-- `npm run quality:score`
-- `npm run plan:new -- <slug>`
-- `npm run worktree:bootstrap`
-- `npm run verify`
+- `.buildParams.stage` and `.buildParams.master` are committed placeholders for environment-based build flows.
+- `.env.example` documents the runtime env contract for local work.
+- `.codex/worktree.env` now includes worktree-specific observability URLs as well as the app port.
+- `npm run clean:artifacts` prunes disposable `dist/` and Playwright output after validation runs.
+- `.nvmrc` pins the intended Node version for this repo.

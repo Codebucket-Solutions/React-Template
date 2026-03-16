@@ -8,19 +8,14 @@ import Button from "../button";
 
 const Table = (props) => {
     const [allLabels, setAllLabels] = useState([]);
-    const [sortSelected, setSortSelected] = useState("");
     const [pageNo, setPageNo] = useState(Number.parseInt(props.pageNumber || 1));
     const [colWidths, setColWidths] = useState([]);
+
     useEffect(() => {
-        getColumn();
-    }, [props.columns]);
-
-    const getColumn = () => {
         if (props.columns && props.columns.length > 0) {
-
             let _allLabels = [];
             let _colWidths = [];
-            props.columns.map((p) => {
+            props.columns.forEach((p) => {
                 if (p.widthEnable) {
                     _colWidths.push(p.width);
                 } else {
@@ -36,14 +31,15 @@ const Table = (props) => {
             });
             setAllLabels(_allLabels);
             setColWidths(_colWidths);
+        } else {
+            setAllLabels([]);
+            setColWidths([]);
         }
-    };
+    }, [props.columns, props.isChangeColumn]);
 
     useEffect(() => {
-        if (props.initialSort && !sortSelected) {
-            setSortSelected(props.initialSort);
-        }
-    }, [props.initialSort]);
+        setPageNo(Number.parseInt(props.pageNumber || 1));
+    }, [props.pageNumber]);
 
     const handleSelected = (event, value) => {
 

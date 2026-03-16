@@ -1,0 +1,38 @@
+export const routeCatalog = [
+  {
+    id: 'showcase',
+    path: '/',
+    label: 'Showcase',
+    title: 'Component Showcase',
+    description: 'Reference implementations for the shared UI components and styling tokens.',
+    pageModule: '../pages/showcase',
+    smokeText: 'Component Showcase',
+  },
+  {
+    id: 'todos',
+    path: '/todos',
+    label: 'Todos',
+    title: 'Todo Workspace',
+    description: 'A working RTK Query example with mock-first data and mutation flows.',
+    pageModule: '../pages/todos',
+    smokeText: 'Todo Workspace',
+  },
+  {
+    id: 'login',
+    path: '/login',
+    label: 'Login',
+    title: 'Login Example',
+    description: 'A thunk-backed auth flow using shared axios helpers and mock-first credentials.',
+    pageModule: '../pages/login',
+    smokeText: 'Login Example',
+  },
+  {
+    id: 'observability',
+    path: '/observability',
+    label: 'Observability',
+    title: 'Observability Console',
+    description: 'Local runtime signals plus a queryable logs, metrics, and traces stack for validation.',
+    pageModule: '../pages/observability',
+    smokeText: 'Observability Console',
+  },
+];

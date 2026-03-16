@@ -25,3 +25,10 @@ dist-ssr
 
 
 .env
+.buildParams.local
+.codex/worktree.env
+output/playwright/**
+!output/playwright/.gitkeep
+output/observability/**
+!output/observability/.gitkeep
+.playwright-cli/

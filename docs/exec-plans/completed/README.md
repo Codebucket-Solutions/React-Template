@@ -1,3 +1,5 @@
 # Completed plans
 
-Move finished plans here for historical reference.
+Move finished project work here once this template is in use.
+
+This directory is intentionally empty in the starter template aside from this README.

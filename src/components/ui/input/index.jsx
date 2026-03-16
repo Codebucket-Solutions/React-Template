@@ -71,7 +71,6 @@ const InputField = ({
                 rows={props.rows || 4}
                 style={{ height: "auto", ...props.style }}
                 onChange={handleChange}
-                res
                 {...forms}
             />
             {!props.hideCharCount && (

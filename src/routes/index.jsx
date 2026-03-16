@@ -1,68 +1,38 @@
-import { lazy, useEffect, useState, Suspense } from "react";
+import { lazy, Suspense } from 'react';
+import { Navigate, Route, Routes } from 'react-router-dom';
+import AppShell from '../containers/layout/appShell';
+import { routeCatalog } from './routeCatalog';
 
-import { Route, Routes } from "react-router-dom";
-
-const ButtonPage = lazy(() => import("../pages/buttonPages"));
-const TodoListPage = lazy(() => import("../pages/todoPages/todoList"));
-
-const homeRoutes = [
-    {
-        path: "/",
-        parent: "BUTTON",
-        permissions: "VIEW_BUTTON",
-        exact: true,
-        component: ButtonPage,
-    },
-    {
-        path: "/todos",
-        parent: "TODO",
-        permissions: "VIEW_TODO",
-        exact: true,
-        component: TodoListPage,
-    },
-];
-
-
-
-
+const pageModules = {
+  showcase: lazy(() => import('../pages/showcase')),
+  todos: lazy(() => import('../pages/todos')),
+  login: lazy(() => import('../pages/login')),
+  observability: lazy(() => import('../pages/observability')),
+};
 
 const PagesRoute = () => {
-    const [allRoutes, setAllRoutes] = useState([]);
+  return (
+    <Routes>
+      <Route element={<AppShell />}>
+        {routeCatalog.map((route) => {
+          const PageComponent = pageModules[route.id];
 
-    useEffect(() => {
-        setAllRoutes(homeRoutes)
-    }, []);
-
-
-    const generateRoute = (allRoutes) => {
-        let _data = [];
-        allRoutes.map(({ path, component, navigate }, i) => {
-            const Component = component;
-            _data.push(
-                <Route
-                    path={path}
-                    key={i}
-                    exact={true}
-                    element={
-                        navigate ? (
-                            <Navigate replace to={navigate} />
-                        ) : (
-                            <Suspense fallback={<></>}>
-                                <Component />
-                            </Suspense>
-                        )
-                    }
-                />
-            );
-        });
-        return <Routes>{_data}</Routes>;
-    };
-
-    return (
-        <div>
-            {generateRoute(allRoutes)}
-        </div>
-    );
+          return (
+            <Route
+              key={route.id}
+              path={route.path}
+              element={
+                <Suspense fallback={<div />}>
+                  <PageComponent />
+                </Suspense>
+              }
+            />
+          );
+        })}
+      </Route>
+      <Route path="*" element={<Navigate replace to="/" />} />
+    </Routes>
+  );
 };
 
 export default PagesRoute;

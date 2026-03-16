@@ -1,23 +1,13 @@
 import { configureStore } from '@reduxjs/toolkit';
 import { rootReducer } from './rootReducer';
 import { baseApi } from '../apiCall/rtkBaseApi/baseApi';
-
-// Load auth state from localStorage
-const loadAuthFromLocalStorage = () => {
-  try {
-    const admin = localStorage.getItem("admin-login");
-    const influencer = localStorage.getItem("influencer-login");
-    if (admin) return JSON.parse(admin);
-    if (influencer) return JSON.parse(influencer);
-    return null;
-  } catch {
-    return null;
-  }
-};
+import { loadAuthSession } from './slices/auth/authSlice';
 
 const preloadedState = {
-  User: {
-    auth: loadAuthFromLocalStorage(),
+  auth: {
+    session: loadAuthSession(),
+    loginStatus: 'idle',
+    loginError: null,
   },
 };
 
@@ -26,6 +16,5 @@ export const store = configureStore({
   preloadedState,
   middleware: (getDefaultMiddleware) =>
     getDefaultMiddleware({ serializableCheck: false }).concat(baseApi.middleware),
-
-  devTools: import.meta.env.VITE_NODE_ENV !== "production",
+  devTools: import.meta.env.VITE_NODE_ENV !== 'production',
 });
