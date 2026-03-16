@@ -118,3 +118,21 @@ npm run dev
 * **Vite**
 
 ---
+## 🤖 Codex / Harness Layer
+
+This template now includes an additive harness layer for Codex app usage:
+
+- `AGENTS.md` at repo root
+- `.codex/config.toml`
+- structured repo docs under `docs/`
+- execution plan folders under `docs/exec-plans/`
+- repo validation and quality scripts under `scripts/`
+- CI checks for lint, build, and doc hygiene
+
+### Additional scripts
+
+- `npm run docs:validate`
+- `npm run quality:score`
+- `npm run plan:new -- <slug>`
+- `npm run worktree:bootstrap`
+- `npm run verify`
