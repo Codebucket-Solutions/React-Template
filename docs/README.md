@@ -14,6 +14,7 @@
 - `SECURITY.md` — frontend security guardrails
 - `RELIABILITY.md` — reproducible setup expectations
 - `CODEX_APP_SETUP.md` — Codex app configuration guidance
+- `CLAUDE_SETUP.md` — Claude Code configuration guidance
 
 ## Reference And Scaffolding
 - `generated/` — derived artifacts such as the route map
