@@ -1,6 +1,12 @@
 # AGENTS.md
 
-Start here before making changes.
+Start here before making changes. This file is the shared entry point for all AI agents.
+
+## Supported agents
+- **Claude Code** — reads `CLAUDE.md` automatically; see `docs/CLAUDE_SETUP.md`
+- **OpenAI Codex** — reads `.codex/config.toml`; see `docs/CODEX_APP_SETUP.md`
+
+Both agents follow the same workflow, architecture rules, and verification commands defined below and in `docs/`.
 
 ## Read in this order
 1. `docs/WORKFLOW.md`
@@ -15,8 +21,8 @@ Start here before making changes.
 - Make the smallest safe change.
 - Read files before editing them.
 - Preserve the existing frontend template structure unless the task explicitly requires structural changes.
-- Before adding API calls or shared state, inspect src/apiCall/, src/store/, and src/shared/axios.js first and extend those patterns instead of creating page-local REST clients or parallel state containers.
-- Follow the existing page/layout structure: prefer src/pages/<feature>/index.jsx wrappers, src/containers/<feature>/index.jsx implementations, and src/containers/layout/ for shared shells before adding new top-level page or layout files.
+- Before adding API calls or shared state, inspect `src/apiCall/`, `src/store/`, and `src/shared/axios.js` first and extend those patterns instead of creating page-local REST clients or parallel state containers.
+- Follow the existing page/layout structure: prefer `src/pages/<feature>/index.jsx` wrappers, `src/containers/<feature>/index.jsx` implementations, and `src/containers/layout/` for shared shells before adding new top-level page or layout files.
 - Keep `src/routes/routeCatalog.js` as the route system of record and regenerate `docs/generated/route-map.md` after route changes.
 - Create or update an execution plan before starting any non-trivial work.
 - Keep the execution plan current until the task is complete.
@@ -42,5 +48,6 @@ Start here before making changes.
 - Docker files: `docker/`
 - Harness docs: `docs/`
 - Repo scripts: `scripts/`
-- Codex project config: `.codex/config.toml`
 - Route registry: `src/routes/routeCatalog.js`
+- Codex config: `.codex/config.toml`
+- Claude config: `.claude/settings.json`

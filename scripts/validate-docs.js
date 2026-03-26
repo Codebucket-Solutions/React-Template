@@ -17,7 +17,9 @@ const required = [
   'docs/QUALITY_SCORE.md',
   'docs/SECURITY.md',
   'docs/RELIABILITY.md',
-  'docs/CODEX_APP_SETUP.md'
+  'docs/CODEX_APP_SETUP.md',
+  'CLAUDE.md',
+  'docs/CLAUDE_SETUP.md'
 ];
 
 const missing = required.filter((file) => !fs.existsSync(path.resolve(process.cwd(), file)));

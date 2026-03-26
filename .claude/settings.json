@@ -1,0 +1,37 @@
+{
+  "permissions": {
+    "allow": [
+      "Bash(npm run lint)",
+      "Bash(npm run build)",
+      "Bash(npm run arch:check)",
+      "Bash(npm run docs:generate)",
+      "Bash(npm run docs:validate)",
+      "Bash(npm run quality:score)",
+      "Bash(npm run verify)",
+      "Bash(npm run ui:smoke)",
+      "Bash(npm run worktree:bootstrap)",
+      "Bash(npm run worktree:env)",
+      "Bash(npm run dev:worktree)",
+      "Bash(npm run observability:status)",
+      "Bash(npm run observability:up)",
+      "Bash(npm run observability:down)",
+      "Bash(npm run observability:query*)",
+      "Bash(npm run clean:artifacts)",
+      "Bash(npm ci)",
+      "Bash(npm install)"
+    ]
+  },
+  "hooks": {
+    "postToolUse": [
+      {
+        "matcher": "Edit|Write",
+        "hooks": [
+          {
+            "type": "command",
+            "command": "node scripts/check-architecture.js --quiet 2>/dev/null || echo '⚠ Architecture boundary violation detected — run npm run arch:check'"
+          }
+        ]
+      }
+    ]
+  }
+}
