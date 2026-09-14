@@ -75,34 +75,58 @@ Why:
 
 ## 6. Inject Env at Container Startup
 
-Created `docker/runtime-env.sh`.
+Created `docker/runtime-env-entrypoint/main.go`, a tiny Go program compiled to a static binary that runs as the container `ENTRYPOINT`.
 
 Current behavior:
 
 - Reads all container environment variables.
 - Picks only variables that start with `VITE_`.
-- Generates `/usr/share/nginx/html/__import_meta_env__.js` dynamically.
+- Writes them (sorted, JS-escaped) to `/tmp/react-template-runtime-env/__import_meta_env__.js` as
+  `globalThis.import_meta_env = Object.assign(globalThis.import_meta_env || {}, { ... });`
+- Then `exec`s the container command (nginx), so nginx stays PID 1.
+
+`IMPORT_META_ENV_OUTPUT` can override the output path if needed.
+
+Why a Go binary instead of a shell script:
+
+- Needs no shell in the final image and does not depend on the nginx image's `/docker-entrypoint.d` hook.
+- Writes under `/tmp`, so it keeps working when the container runs with a read-only root filesystem.
 
 This prevents misses when developers add new `VITE_*` keys in `.env.example`.
 
-## 7. Run Runtime Script in Nginx Image
+## 7. Wire the Entrypoint in the Docker Image
 
 Updated both Dockerfiles:
 
 - `docker/Dockerfile`
 - `docker/Dockerfile.stage`
 
-Added:
+In the build stage, the static stub from `public/` is replaced by a symlink to the runtime file:
 
 ```dockerfile
-COPY docker/runtime-env.sh /docker-entrypoint.d/40-runtime-env.sh
-RUN chmod +x /docker-entrypoint.d/40-runtime-env.sh
+RUN rm -f dist/__import_meta_env__.js && ln -s /tmp/react-template-runtime-env/__import_meta_env__.js dist/__import_meta_env__.js
+```
+
+A dedicated Go stage compiles the injector for the target platform:
+
+```dockerfile
+FROM --platform=$BUILDPLATFORM golang:1.24-bullseye AS runtime-env-builder
+COPY docker/runtime-env-entrypoint/main.go ./main.go
+RUN CGO_ENABLED=0 GOOS=${TARGETOS} GOARCH=${TARGETARCH} go build -trimpath -ldflags='-s -w' -o /out/runtime-env-entrypoint ./main.go
+```
+
+The nginx stage (base image, downloaded `nginx.conf`, port 80) is unchanged apart from copying the binary and using it as the entrypoint:
+
+```dockerfile
+COPY --chmod=755 --from=runtime-env-builder /out/runtime-env-entrypoint /usr/local/bin/runtime-env-entrypoint
+ENTRYPOINT ["/usr/local/bin/runtime-env-entrypoint"]
+CMD ["/usr/sbin/nginx", "-g", "daemon off;"]
 ```
 
 Why:
 
-- Nginx entrypoint executes scripts from `/docker-entrypoint.d` before starting Nginx.
-- Script writes runtime env JS file on each container start.
+- On every container start the entrypoint regenerates the runtime env JS file, then hands over to nginx.
+- Nginx serves `/__import_meta_env__.js` through the symlink.
 
 ## 8. Pass Env to Containers via Compose
 
@@ -118,7 +142,7 @@ env_file:
 
 Why:
 
-- Ensures container receives `VITE_*` values used by `runtime-env.sh`.
+- Ensures container receives `VITE_*` values used by the runtime env entrypoint.
 
 ## 9. Important `.env` Format Rule
 
@@ -149,7 +173,7 @@ docker exec -it madinfluence-crm-frontend sh -c 'printenv | grep "^VITE_" | sort
 2. Check generated runtime file in container:
 
 ```bash
-docker exec -it madinfluence-crm-frontend cat /usr/share/nginx/html/__import_meta_env__.js
+docker exec -it madinfluence-crm-frontend cat /tmp/react-template-runtime-env/__import_meta_env__.js
 ```
 
 3. Check what Nginx serves:
@@ -173,4 +197,4 @@ docker compose -f docker-compose.yml down
 docker compose -f docker-compose.yml up -d --force-recreate
 ```
 
-This ensures runtime script regenerates `__import_meta_env__.js` with latest values.
+This ensures the entrypoint regenerates `__import_meta_env__.js` with latest values.
